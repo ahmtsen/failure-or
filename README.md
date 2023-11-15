@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/ahmtsen/failure-or/node.js.yml?logo=GitHub&link=https%3A%2F%2Fgithub.com%2Fahmtsen%2Ffailure-or%2Factions) ![Codecov](https://img.shields.io/codecov/c/gh/ahmtsen/failure-or?logo=codecov&link=https%3A%2F%2Fapp.codecov.io%2Fgh%2Fahmtsen%2Ffailure-or) ![GitHub License](https://img.shields.io/github/license/ahmtsen/failure-or?link=https%3A%2F%2Fgithub.com%2Fahmtsen%2Ffailure-or%2Fblob%2Fmain%2FLICENSE) ![npm](https://img.shields.io/npm/v/failure-or?logo=npm&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2Ffailure-or)
+[![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/ahmtsen/failure-or/node.js.yml?logo=GitHub)](https://github.com/ahmtsen/failure-or/actions) [![Codecov](https://img.shields.io/codecov/c/gh/ahmtsen/failure-or?logo=codecov)](https://app.codecov.io/gh/ahmtsen/failure-or) [![GitHub License](https://img.shields.io/github/license/ahmtsen/failure-or)](https://github.com/ahmtsen/failure-or/blob/main/LICENSE) [![npm](https://img.shields.io/npm/v/failure-or?logo=npm)](https://www.npmjs.com/package/failure-or)
 
 
 
