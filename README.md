@@ -1,5 +1,14 @@
 # failure-or
 
+<div align="center">
+
+![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/ahmtsen/failure-or/node.js.yml?logo=GitHub) ![Codecov](https://img.shields.io/codecov/c/gh/ahmtsen/failure-or?logo=codecov) ![GitHub License](https://img.shields.io/github/license/ahmtsen/failure-or) ![npm](https://img.shields.io/npm/v/failure-or?logo=npm)
+
+
+</div>
+
+
+
 a simple, discriminated union of a failure and a result
 
 ## Getting Started
