@@ -41,7 +41,7 @@ export class Failure {
   private constructor(
     code: string,
     description: string,
-    type: FailureType | string,
+    type: FailureType | string
   ) {
     this.code = code;
     this.description = description;
@@ -49,7 +49,7 @@ export class Failure {
   }
 
   /**
-   * Creates a new instance of {@link Failure} with type {@link FailureType.Default} from a code and description.
+   * Creates a new instance of {@link Failure} with type {@link FailureTypes.Default} from a code and description.
    *
    * @static
    * @param {string} [code="General.Failure"]
@@ -59,13 +59,13 @@ export class Failure {
    */
   public static create(
     code = 'General.Failure',
-    description = 'A failure has occurred.',
+    description = 'A failure has occurred.'
   ): Failure {
     return new Failure(code, description, FailureTypes.Default);
   }
 
   /**
-   * Creates a new instance of {@link Failure} with type {@link FailureType.Unexpected} from a code and description.
+   * Creates a new instance of {@link Failure} with type {@link FailureTypes.Unexpected} from a code and description.
    *
    * @static
    * @param {string} [code="General.Unexpected"]
@@ -75,13 +75,13 @@ export class Failure {
    */
   public static unexpected(
     code = 'General.Unexpected',
-    description = 'An unexpected failure has occurred.',
+    description = 'An unexpected failure has occurred.'
   ): Failure {
     return new Failure(code, description, FailureTypes.Unexpected);
   }
 
   /**
-   * Creates a new instance of {@link Failure} with type {@link FailureType.Conflict} from a code and description.
+   * Creates a new instance of {@link Failure} with type {@link FailureTypes.Conflict} from a code and description.
    *
    * @static
    * @param {string} [code='General.Validation']
@@ -91,13 +91,13 @@ export class Failure {
    */
   public static validation(
     code = 'General.Validation',
-    description = 'A validation failure has occurred.',
+    description = 'A validation failure has occurred.'
   ): Failure {
     return new Failure(code, description, FailureTypes.Validation);
   }
 
   /**
-   * Creates a new instance of {@link Failure} with type {@link FailureType.Conflict} from a code and description.
+   * Creates a new instance of {@link Failure} with type {@link FailureTypes.Conflict} from a code and description.
    *
    * @static
    * @param {string} [code='General.Conflict']
@@ -107,13 +107,13 @@ export class Failure {
    */
   public static conflict(
     code = 'General.Conflict',
-    description = 'A conflict has occurred.',
+    description = 'A conflict has occurred.'
   ): Failure {
     return new Failure(code, description, FailureTypes.Conflict);
   }
 
   /**
-   * Creates a new instance of {@link Failure} with type {@link FailureType.NotFound} from a code and description.
+   * Creates a new instance of {@link Failure} with type {@link FailureTypes.NotFound} from a code and description.
    *
    * @static
    * @param {string} [code='General.NotFound']
@@ -123,13 +123,13 @@ export class Failure {
    */
   public static notFound(
     code: string = 'General.NotFound',
-    description: string = "A 'Not Found' failure has occurred.",
+    description: string = "A 'Not Found' failure has occurred."
   ): Failure {
     return new Failure(code, description, FailureTypes.NotFound);
   }
 
   /**
-   * Creates a new instance of {@link Failure} with type {@link FailureType.Unauthorized} from a code and description.
+   * Creates a new instance of {@link Failure} with type {@link FailureTypes.Unauthorized} from a code and description.
    *
    * @static
    * @param {string} [code='General.Unauthorized']
@@ -139,7 +139,7 @@ export class Failure {
    */
   public static unauthorized(
     code: string = 'General.Unauthorized',
-    description: string = "An 'Unauthorized' failure has occurred.",
+    description: string = "An 'Unauthorized' failure has occurred."
   ): Failure {
     return new Failure(code, description, FailureTypes.Unauthorized);
   }
@@ -169,7 +169,7 @@ export class Failure {
   public static custom(
     code: string,
     description: string,
-    type: string,
+    type: string
   ): Failure {
     return new Failure(code, description, type);
   }
