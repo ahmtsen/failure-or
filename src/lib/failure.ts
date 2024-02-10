@@ -41,7 +41,7 @@ export class Failure {
   private constructor(
     code: string,
     description: string,
-    type: FailureType | string
+    type: FailureType | string,
   ) {
     this.code = code;
     this.description = description;
@@ -59,7 +59,7 @@ export class Failure {
    */
   public static create(
     code = 'General.Failure',
-    description = 'A failure has occurred.'
+    description = 'A failure has occurred.',
   ): Failure {
     return new Failure(code, description, FailureTypes.Default);
   }
@@ -75,7 +75,7 @@ export class Failure {
    */
   public static unexpected(
     code = 'General.Unexpected',
-    description = 'An unexpected failure has occurred.'
+    description = 'An unexpected failure has occurred.',
   ): Failure {
     return new Failure(code, description, FailureTypes.Unexpected);
   }
@@ -91,7 +91,7 @@ export class Failure {
    */
   public static validation(
     code = 'General.Validation',
-    description = 'A validation failure has occurred.'
+    description = 'A validation failure has occurred.',
   ): Failure {
     return new Failure(code, description, FailureTypes.Validation);
   }
@@ -107,7 +107,7 @@ export class Failure {
    */
   public static conflict(
     code = 'General.Conflict',
-    description = 'A conflict has occurred.'
+    description = 'A conflict has occurred.',
   ): Failure {
     return new Failure(code, description, FailureTypes.Conflict);
   }
@@ -123,7 +123,7 @@ export class Failure {
    */
   public static notFound(
     code: string = 'General.NotFound',
-    description: string = "A 'Not Found' failure has occurred."
+    description: string = "A 'Not Found' failure has occurred.",
   ): Failure {
     return new Failure(code, description, FailureTypes.NotFound);
   }
@@ -139,7 +139,7 @@ export class Failure {
    */
   public static unauthorized(
     code: string = 'General.Unauthorized',
-    description: string = "An 'Unauthorized' failure has occurred."
+    description: string = "An 'Unauthorized' failure has occurred.",
   ): Failure {
     return new Failure(code, description, FailureTypes.Unauthorized);
   }
@@ -169,7 +169,7 @@ export class Failure {
   public static custom(
     code: string,
     description: string,
-    type: string
+    type: string,
   ): Failure {
     return new Failure(code, description, type);
   }
