@@ -1,7 +1,7 @@
 import test from 'ava';
 
 import { Failure } from './failure';
-import { FailureType } from './failure-type';
+import { FailureTypes } from './failure-type';
 
 const code = 'FAILURE_CODE';
 const description = 'FAILURE_DESCRIPTION';
@@ -11,8 +11,7 @@ test('failure', (t) => {
 
   t.is(failure.code, code);
   t.is(failure.description, description);
-  t.is(failure.type, FailureType.Default);
-  t.is(failure.numericType, FailureType.Default.valueOf());
+  t.is(failure.type, FailureTypes.Default);
 });
 
 test('failure with type unexpected', (t) => {
@@ -20,8 +19,7 @@ test('failure with type unexpected', (t) => {
 
   t.is(unexpectedFailure.code, code);
   t.is(unexpectedFailure.description, description);
-  t.is(unexpectedFailure.type, FailureType.Unexpected);
-  t.is(unexpectedFailure.numericType, FailureType.Unexpected.valueOf());
+  t.is(unexpectedFailure.type, FailureTypes.Unexpected);
 });
 
 test('failure with type validation', (t) => {
@@ -29,8 +27,7 @@ test('failure with type validation', (t) => {
 
   t.is(validationFailure.code, code);
   t.is(validationFailure.description, description);
-  t.is(validationFailure.type, FailureType.Validation);
-  t.is(validationFailure.numericType, FailureType.Validation.valueOf());
+  t.is(validationFailure.type, FailureTypes.Validation);
 });
 
 test('failure with type conflict', (t) => {
@@ -38,8 +35,7 @@ test('failure with type conflict', (t) => {
 
   t.is(conflictFailure.code, code);
   t.is(conflictFailure.description, description);
-  t.is(conflictFailure.type, FailureType.Conflict);
-  t.is(conflictFailure.numericType, FailureType.Conflict.valueOf());
+  t.is(conflictFailure.type, FailureTypes.Conflict);
 });
 
 test('failure with type not found', (t) => {
@@ -47,8 +43,7 @@ test('failure with type not found', (t) => {
 
   t.is(notFoundFailure.code, code);
   t.is(notFoundFailure.description, description);
-  t.is(notFoundFailure.type, FailureType.NotFound);
-  t.is(notFoundFailure.numericType, FailureType.NotFound.valueOf());
+  t.is(notFoundFailure.type, FailureTypes.NotFound);
 });
 
 test('failure with type unauthorized', (t) => {
@@ -56,18 +51,16 @@ test('failure with type unauthorized', (t) => {
 
   t.is(unauthorizedFailure.code, code);
   t.is(unauthorizedFailure.description, description);
-  t.is(unauthorizedFailure.type, FailureType.Unauthorized);
-  t.is(unauthorizedFailure.numericType, FailureType.Unauthorized.valueOf());
+  t.is(unauthorizedFailure.type, FailureTypes.Unauthorized);
 });
 
 test('failure with custom type', (t) => {
-  const customType = 1234;
+  const customType = 'MyCustomFailureType';
   const customFailure = Failure.custom(code, description, customType);
 
   t.is(customFailure.code, code);
   t.is(customFailure.description, description);
   t.is(customFailure.type, customType);
-  t.is(customFailure.numericType, customType);
 });
 
 test('failure from error', (t) => {
@@ -76,8 +69,7 @@ test('failure from error', (t) => {
 
   t.is(failure.code, error.name);
   t.is(failure.description, error.message);
-  t.is(failure.type, FailureType.Unexpected);
-  t.is(failure.numericType, FailureType.Unexpected.valueOf());
+  t.is(failure.type, FailureTypes.Unexpected);
 });
 
 test('failure with default parameters', (t) => {
@@ -85,8 +77,7 @@ test('failure with default parameters', (t) => {
 
   t.is(failure.code, 'General.Failure');
   t.is(failure.description, 'A failure has occurred.');
-  t.is(failure.type, FailureType.Default);
-  t.is(failure.numericType, FailureType.Default.valueOf());
+  t.is(failure.type, FailureTypes.Default);
 });
 
 test('failure with type unexpected and default parameters', (t) => {
@@ -94,8 +85,7 @@ test('failure with type unexpected and default parameters', (t) => {
 
   t.is(failure.code, 'General.Unexpected');
   t.is(failure.description, 'An unexpected failure has occurred.');
-  t.is(failure.type, FailureType.Unexpected);
-  t.is(failure.numericType, FailureType.Unexpected.valueOf());
+  t.is(failure.type, FailureTypes.Unexpected);
 });
 
 test('failure with type validation and default parameters', (t) => {
@@ -103,8 +93,7 @@ test('failure with type validation and default parameters', (t) => {
 
   t.is(failure.code, 'General.Validation');
   t.is(failure.description, 'A validation failure has occurred.');
-  t.is(failure.type, FailureType.Validation);
-  t.is(failure.numericType, FailureType.Validation.valueOf());
+  t.is(failure.type, FailureTypes.Validation);
 });
 
 test('failure with type conflict and default parameters', (t) => {
@@ -112,8 +101,7 @@ test('failure with type conflict and default parameters', (t) => {
 
   t.is(failure.code, 'General.Conflict');
   t.is(failure.description, 'A conflict has occurred.');
-  t.is(failure.type, FailureType.Conflict);
-  t.is(failure.numericType, FailureType.Conflict.valueOf());
+  t.is(failure.type, FailureTypes.Conflict);
 });
 
 test('failure with type not found and default parameters', (t) => {
@@ -121,8 +109,7 @@ test('failure with type not found and default parameters', (t) => {
 
   t.is(failure.code, 'General.NotFound');
   t.is(failure.description, "A 'Not Found' failure has occurred.");
-  t.is(failure.type, FailureType.NotFound);
-  t.is(failure.numericType, FailureType.NotFound.valueOf());
+  t.is(failure.type, FailureTypes.NotFound);
 });
 
 test('failure with type unauthorized and default parameters', (t) => {
@@ -130,6 +117,5 @@ test('failure with type unauthorized and default parameters', (t) => {
 
   t.is(failure.code, 'General.Unauthorized');
   t.is(failure.description, "An 'Unauthorized' failure has occurred.");
-  t.is(failure.type, FailureType.Unauthorized);
-  t.is(failure.numericType, FailureType.Unauthorized.valueOf());
+  t.is(failure.type, FailureTypes.Unauthorized);
 });

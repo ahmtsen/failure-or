@@ -47,8 +47,9 @@ test('switchFirst executes onFailure when failure', (t) => {
 
 test('switchAsync executes onValue when success', async (t) => {
   const errorOrValue = ok('value');
-  const onValue = (value: string) =>
-    Promise.resolve(t.is(value, errorOrValue.value));
+  const onValue = async (value: string) => {
+    await Promise.resolve(t.is(value, errorOrValue.value));
+  };
   const onFailure = () => {
     throw new Error('Should not be called');
   };
@@ -62,16 +63,18 @@ test('switchAsync executes onFailure when failure', async (t) => {
   const onValue = () => {
     throw new Error('Should not be called');
   };
-  const onFailure = (failures: Array<Failure>) =>
-    Promise.resolve(t.is(failures[0], failure));
+  const onFailure = async (failures: Array<Failure>) => {
+    await Promise.resolve(t.is(failures[0], failure));
+  };
 
   await t.notThrowsAsync(errorOrValue.switchAsync(onValue, onFailure));
 });
 
 test('switchFirstAsync executes onValue when success', async (t) => {
   const errorOrValue = ok('value');
-  const onValue = (value: string) =>
-    Promise.resolve(t.is(value, errorOrValue.value));
+  const onValue = async (value: string) => {
+    await Promise.resolve(t.is(value, errorOrValue.value));
+  };
   const onFailure = () => {
     throw new Error('Should not be called');
   };
@@ -85,8 +88,9 @@ test('switchFirstAsync executes onFailure when failure', async (t) => {
   const onValue = () => {
     throw new Error('Should not be called');
   };
-  const onFailure = (failure: Failure) =>
-    Promise.resolve(t.is(failure, failure));
+  const onFailure = async (failure: Failure) => {
+    await Promise.resolve(t.is(failure, failure));
+  };
 
   await t.notThrowsAsync(errorOrValue.switchFirstAsync(onValue, onFailure));
 });

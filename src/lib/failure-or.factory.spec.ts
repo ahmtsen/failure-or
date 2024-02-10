@@ -2,7 +2,7 @@ import test from 'ava';
 
 import { Failure } from './failure';
 import { fail, ok } from './failure-or.factory';
-import { FailureType } from './failure-type';
+import { FailureTypes } from './failure-type';
 import { Result } from './result';
 
 type Person = {
@@ -45,7 +45,7 @@ test('accessing failures when success', (t) => {
   const failureOrValue = ok(value);
 
   t.is(failureOrValue.failures.length, 1);
-  t.is(failureOrValue.failures[0].type, FailureType.Unexpected);
+  t.is(failureOrValue.failures[0].type, FailureTypes.Unexpected);
   t.is(failureOrValue.failures[0].code, 'FailureOr.NoFailures');
 });
 
@@ -62,7 +62,7 @@ test('accessing firstFailure when success', (t) => {
 
   const failureOrValue = ok(value);
 
-  t.is(failureOrValue.firstFailure.type, FailureType.Unexpected);
+  t.is(failureOrValue.firstFailure.type, FailureTypes.Unexpected);
   t.is(failureOrValue.firstFailure.code, 'FailureOr.NoFirstFailure');
 });
 
