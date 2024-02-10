@@ -6,10 +6,11 @@ export function ok<TValue>(value: TValue): FailureOr<TValue> {
 }
 
 export function fail<TValue>(
-  failure: Failure | Array<Failure>
+  failure: Failure | Array<Failure>,
 ): FailureOr<TValue> {
   if (failure instanceof Array) {
     return FailureOr.fromFailures(failure);
   }
+
   return FailureOr.fromFailure(failure);
 }

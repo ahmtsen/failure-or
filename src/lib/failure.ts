@@ -1,4 +1,4 @@
-import { FailureType } from './failure-type';
+import { FailureType, FailureTypes } from './failure-type';
 
 /**
  * Represents a failure.
@@ -26,31 +26,26 @@ export class Failure {
   /**
    * Gets the failure type
    *
-   * @type {FailureType}
+   * @type {FailureType | string}
    * @memberof Failure
    */
-  public readonly type: FailureType;
-
-  /**
-   * Gets the failure type as a number
-   *
-   * @type {number}
-   * @memberof Failure
-   */
-  public readonly numericType: number;
+  public readonly type: FailureType | string;
 
   /**
    * Creates an instance of Failure.
    * @param {string} code
    * @param {string} description
-   * @param {FailureType} type
+   * @param {FailureType | string} type
    * @memberof Failure
    */
-  private constructor(code: string, description: string, type: FailureType) {
+  private constructor(
+    code: string,
+    description: string,
+    type: FailureType | string,
+  ) {
     this.code = code;
     this.description = description;
     this.type = type;
-    this.numericType = type.valueOf();
   }
 
   /**
@@ -64,9 +59,9 @@ export class Failure {
    */
   public static create(
     code = 'General.Failure',
-    description = 'A failure has occurred.'
+    description = 'A failure has occurred.',
   ): Failure {
-    return new Failure(code, description, FailureType.Default);
+    return new Failure(code, description, FailureTypes.Default);
   }
 
   /**
@@ -80,9 +75,9 @@ export class Failure {
    */
   public static unexpected(
     code = 'General.Unexpected',
-    description = 'An unexpected failure has occurred.'
+    description = 'An unexpected failure has occurred.',
   ): Failure {
-    return new Failure(code, description, FailureType.Unexpected);
+    return new Failure(code, description, FailureTypes.Unexpected);
   }
 
   /**
@@ -96,9 +91,9 @@ export class Failure {
    */
   public static validation(
     code = 'General.Validation',
-    description = 'A validation failure has occurred.'
+    description = 'A validation failure has occurred.',
   ): Failure {
-    return new Failure(code, description, FailureType.Validation);
+    return new Failure(code, description, FailureTypes.Validation);
   }
 
   /**
@@ -112,9 +107,9 @@ export class Failure {
    */
   public static conflict(
     code = 'General.Conflict',
-    description = 'A conflict has occurred.'
+    description = 'A conflict has occurred.',
   ): Failure {
-    return new Failure(code, description, FailureType.Conflict);
+    return new Failure(code, description, FailureTypes.Conflict);
   }
 
   /**
@@ -127,10 +122,10 @@ export class Failure {
    * @memberof Failure
    */
   public static notFound(
-    code = 'General.NotFound',
-    description = "A 'Not Found' failure has occurred."
+    code: string = 'General.NotFound',
+    description: string = "A 'Not Found' failure has occurred.",
   ): Failure {
-    return new Failure(code, description, FailureType.NotFound);
+    return new Failure(code, description, FailureTypes.NotFound);
   }
 
   /**
@@ -143,10 +138,10 @@ export class Failure {
    * @memberof Failure
    */
   public static unauthorized(
-    code = 'General.Unauthorized',
-    description = "An 'Unauthorized' failure has occurred."
+    code: string = 'General.Unauthorized',
+    description: string = "An 'Unauthorized' failure has occurred.",
   ): Failure {
-    return new Failure(code, description, FailureType.Unauthorized);
+    return new Failure(code, description, FailureTypes.Unauthorized);
   }
 
   /**
@@ -167,14 +162,14 @@ export class Failure {
    * @static
    * @param {string} code
    * @param {string} description
-   * @param {number} type
+   * @param {string} type
    * @return {*}  {Failure}
    * @memberof Failure
    */
   public static custom(
     code: string,
     description: string,
-    type: number
+    type: string,
   ): Failure {
     return new Failure(code, description, type);
   }

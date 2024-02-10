@@ -4,11 +4,7 @@
 
 [![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/ahmtsen/failure-or/node.js.yml?logo=GitHub)](https://github.com/ahmtsen/failure-or/actions) [![Codecov](https://img.shields.io/codecov/c/gh/ahmtsen/failure-or?logo=codecov)](https://app.codecov.io/gh/ahmtsen/failure-or) [![GitHub License](https://img.shields.io/github/license/ahmtsen/failure-or)](https://github.com/ahmtsen/failure-or/blob/main/LICENSE) [![npm](https://img.shields.io/npm/v/failure-or?logo=npm)](https://www.npmjs.com/package/failure-or)
 
-
-
 </div>
-
-
 
 a simple, discriminated union of a failure and a result
 
@@ -45,7 +41,7 @@ import FailureOr, { ok, failure } from 'failure-or';
 function getUser(userId: number): FailureOr<User> {
   if (userId < 0) {
     return fail(
-      Failure.validation('User.Id.Invalid', 'Invalid user id received.')
+      Failure.validation('User.Id.Invalid', 'Invalid user id received.'),
     );
   }
 
@@ -58,7 +54,7 @@ const failureOrUser = getUser(0);
 
 failureOrUser.switchFirst(
   (user) => console.log(user),
-  (failure) => console.error(failure)
+  (failure) => console.error(failure),
 );
 ```
 
@@ -103,7 +99,7 @@ class User {
 
     if (name.length < 2) {
       failures.push(
-        Failure.validation('User.Name.Short', 'Name is too short.')
+        Failure.validation('User.Name.Short', 'Name is too short.'),
       );
     }
 
@@ -125,11 +121,11 @@ const ERRORS = {
   USERS: {
     NAME_TOO_SHORT: Failure.validation(
       'Users.Name.TooShort',
-      'Name is too short.'
+      'Name is too short.',
     ),
     NAME_TOO_LONG: Failure.validation(
       'Users.Name.TooLong',
-      'Name is too long.'
+      'Name is too long.',
     ),
   },
 } as const;

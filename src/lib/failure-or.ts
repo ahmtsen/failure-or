@@ -41,7 +41,7 @@ export class FailureOr<TValue> implements IFailureOr {
       return [
         Failure.unexpected(
           'FailureOr.NoFailures',
-          'Failures cannot be retrieved from a successful FailureOr'
+          'Failures cannot be retrieved from a successful FailureOr',
         ),
       ];
     }
@@ -90,11 +90,10 @@ export class FailureOr<TValue> implements IFailureOr {
     if (!this.isFailure) {
       return Failure.unexpected(
         'FailureOr.NoFirstFailure',
-        'First failure cannot be retrieved from a successful FailureOr'
+        'First failure cannot be retrieved from a successful FailureOr',
       );
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     return this._failures![0];
   }
 
@@ -107,7 +106,7 @@ export class FailureOr<TValue> implements IFailureOr {
   private constructor(
     isSuccess: boolean,
     value?: TValue,
-    failures?: Array<Failure>
+    failures?: Array<Failure>,
   ) {
     this._value = value;
     this._failures = failures;
@@ -124,7 +123,7 @@ export class FailureOr<TValue> implements IFailureOr {
   }
 
   public static fromFailures<TValue>(
-    failures: Array<Failure>
+    failures: Array<Failure>,
   ): FailureOr<TValue> {
     return new FailureOr<TValue>(false, undefined, failures);
   }
@@ -140,7 +139,7 @@ export class FailureOr<TValue> implements IFailureOr {
    */
   public switch(
     onValue: (value: TValue) => void,
-    onFailure: (failures: Array<Failure>) => void
+    onFailure: (failures: Array<Failure>) => void,
   ): void {
     if (this.isSuccess) {
       onValue(this.value);
@@ -161,7 +160,7 @@ export class FailureOr<TValue> implements IFailureOr {
    */
   public switchAsync(
     onValue: (value: TValue) => Promise<void>,
-    onFailure: (failures: Array<Failure>) => Promise<void>
+    onFailure: (failures: Array<Failure>) => Promise<void>,
   ): Promise<void> {
     if (this.isSuccess) {
       return onValue(this.value);
@@ -181,7 +180,7 @@ export class FailureOr<TValue> implements IFailureOr {
    */
   public switchFirst(
     onValue: (value: TValue) => void,
-    onFailure: (failure: Failure) => void
+    onFailure: (failure: Failure) => void,
   ): void {
     if (this.isSuccess) {
       onValue(this.value);
@@ -202,7 +201,7 @@ export class FailureOr<TValue> implements IFailureOr {
    */
   public switchFirstAsync(
     onValue: (value: TValue) => Promise<void>,
-    onFailure: (failure: Failure) => Promise<void>
+    onFailure: (failure: Failure) => Promise<void>,
   ): Promise<void> {
     if (this.isSuccess) {
       return onValue(this.value);
@@ -224,7 +223,7 @@ export class FailureOr<TValue> implements IFailureOr {
    */
   public match<TResult>(
     onValue: (value: TValue) => TResult,
-    onFailure: (failures: Array<Failure>) => TResult
+    onFailure: (failures: Array<Failure>) => TResult,
   ): TResult {
     if (this.isSuccess) {
       return onValue(this.value);
@@ -246,7 +245,7 @@ export class FailureOr<TValue> implements IFailureOr {
    */
   public matchAsync<TResult>(
     onValue: (value: TValue) => Promise<TResult>,
-    onFailure: (failures: Array<Failure>) => Promise<TResult>
+    onFailure: (failures: Array<Failure>) => Promise<TResult>,
   ): Promise<TResult> {
     if (this.isSuccess) {
       return onValue(this.value);
@@ -268,7 +267,7 @@ export class FailureOr<TValue> implements IFailureOr {
    */
   public matchFirst<TResult>(
     onValue: (value: TValue) => TResult,
-    onFailure: (failure: Failure) => TResult
+    onFailure: (failure: Failure) => TResult,
   ): TResult {
     if (this.isSuccess) {
       return onValue(this.value);
@@ -290,7 +289,7 @@ export class FailureOr<TValue> implements IFailureOr {
    */
   public matchFirstAsync<TResult>(
     onValue: (value: TValue) => Promise<TResult>,
-    onFailure: (failure: Failure) => Promise<TResult>
+    onFailure: (failure: Failure) => Promise<TResult>,
   ): Promise<TResult> {
     if (this.isSuccess) {
       return onValue(this.value);
