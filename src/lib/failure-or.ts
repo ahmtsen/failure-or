@@ -1,4 +1,5 @@
 import { Failure } from './failure';
+import { fail } from './failure-or.factory';
 import { IFailureOr } from './failure-or.interface';
 
 /**
@@ -296,5 +297,56 @@ export class FailureOr<TValue> implements IFailureOr {
     } else {
       return onFailure(this.firstFailure);
     }
+  }
+
+  /**
+   * If the state is a success, the {@link onValue} callback will be executed and its result is returned.
+   *
+   * @template TNextValue
+   * @param {(value: TValue) => FailureOr<TNextValue>} onValue
+   * @returns  {*} {FailureOr<TNextValue>}
+   * @memberof FailureOr
+   */
+  public map<TNextValue>(
+    onValue: (value: TValue) => FailureOr<TNextValue>,
+  ): FailureOr<TNextValue> {
+    if (this.isSuccess) {
+      return onValue(this.value);
+    } else {
+      return fail(this.failures);
+    }
+  }
+
+  // /**
+  //  * If the state is a success, the {@link onValue} callback will be executed and its result is returned.
+  //  *
+  //  * @param {(value: TValue) => Promise<FailureOr<TNextValue>>} onValue
+  //  * @return {*}  {Promise<FailureOr<TValue>>}
+  //  * @memberof FailureOr
+  //  */
+  // public mapAsync<TNextValue>(
+  //   onValue: (value: TValue) => Promise<TNextValue>,
+  // ): FailureOr<Promise<TNextValue>> {
+  //   if (this.isSuccess) {
+  //     return ok(onValue(this.value));
+  //   } else {
+  //     return fail(this.failures);
+  //   }
+  // }
+
+  /**
+   * If the state is a failure, the {@link onFailure} callback will be executed and its result is returned.
+   *
+   * @param {(failures: Array<Failure>) => TValue} onFailure
+   * @return {*}  {FailureOr<TValue>}
+   * @memberof FailureOr
+   */
+  public else(
+    onFailure: (failures: Array<Failure>) => FailureOr<TValue>,
+  ): FailureOr<TValue> {
+    if (this.isFailure) {
+      return onFailure(this.failures);
+    }
+    return this;
   }
 }
